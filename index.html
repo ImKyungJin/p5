@@ -2,31 +2,29 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>P5.js Portfolio</title>
+  <title>P5.js Portfolio Auto Viewer</title>
+
   <style>
-    body { 
-      font-family: Arial; 
-      text-align: center; 
+    html, body {
       margin: 0;
-      background: #f5f5f5;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #ffffff;
     }
-    h1 {
-      margin-top: 20px;
-    }
-    #viewer {
-      width: 900px;
-      height: 600px;
-      border: 2px solid #333;
-      margin: 20px auto;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
       display: block;
-      border-radius: 10px;
-      background: white;
     }
   </style>
 </head>
+
 <body>
 
-<iframe id="viewer" src="hw1/index.html"></iframe>
+  <iframe id="viewer" src="hw1/index.html"></iframe>
 
 <script>
   const pages = [
@@ -36,13 +34,13 @@
     "hw3/index.html"
   ];
 
-  let idx = 0;
+  let index = 0;
   const viewer = document.getElementById("viewer");
 
   setInterval(() => {
-    idx = (idx + 1) % pages.length;
-    viewer.src = pages[idx];
-  }, 10000); 
+    index = (index + 1) % pages.length;
+    viewer.src = pages[index];
+  }, 10000);
 </script>
 
 </body>
