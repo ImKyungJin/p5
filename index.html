@@ -2,8 +2,6 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>P5.js Portfolio Auto Viewer</title>
-
   <style>
     html, body {
       margin: 0;
@@ -11,6 +9,19 @@
       height: 100%;
       overflow: hidden;
       background: #ffffff;
+
+      display: flex;
+      justify-content: center;   
+      align-items: center;      
+    }
+
+    .frame-container {
+      width: 650px;   
+      height: 450px;
+      border: 3px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
 
     iframe {
@@ -24,7 +35,9 @@
 
 <body>
 
-  <iframe id="viewer" src="hw1/index.html"></iframe>
+  <div class="frame-container">
+    <iframe id="viewer" src="hw1/index.html"></iframe>
+  </div>
 
 <script>
   const pages = [
@@ -34,13 +47,24 @@
     "hw3/index.html"
   ];
 
+  const durations = [
+    3000,  
+    10000, 
+    3000,  
+    6000   
+  ];
+
   let index = 0;
   const viewer = document.getElementById("viewer");
 
-  setInterval(() => {
-    index = (index + 1) % pages.length;
+  function cyclePages() {
     viewer.src = pages[index];
-  }, 10000);
+    let delay = durations[index];
+    index = (index + 1) % pages.length;
+    setTimeout(cyclePages, delay);
+  }
+
+  setTimeout(cyclePages, durations[0]);
 </script>
 
 </body>
